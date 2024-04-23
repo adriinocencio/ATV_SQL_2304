@@ -137,7 +137,7 @@ CREATE PROCEDURE AdicionarNovoCarro(
     IN cor_param VARCHAR(20),
     IN placa_param VARCHAR(10),
     IN combustivel_param VARCHAR(20),
-    IN disponibilidade_param BOOLEAN,
+    IN disponibilidade_param VARCHAR(20),
     IN preco_dia_param DECIMAL(10, 2),
     IN preco_km_param DECIMAL(10, 2)
 )
@@ -148,5 +148,5 @@ END//
 
 DELIMITER ;
 
-CALL AdicionarNovoCarro('Toyota', 'Corolla', 2024, 'Preto', 'ABC-5678', 'Gasolina', TRUE, 100.00, 0.50);
+CALL AdicionarNovoCarro('Toyota', 'Corolla', 2024, 'Preto', 'ABC-5678', 'Gasolina', 'DISPONÍVEL', 100.00, 0.50);
 ```
