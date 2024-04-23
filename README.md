@@ -90,3 +90,63 @@ VALUES
     (4, 4, '2024-04-27', '2024-04-29', 90.00, 250.00, 'Hotel', 300.00, 'Transferência Bancária'),
     (5, 5, '2024-04-28', '2024-05-01', 150.00, 350.00, 'Residência', 450.00, 'Cheque');
 ```
+
+### Exercícios:
+
+```sql
+-- Ex 1
+SELECT * FROM Carros;
+
+-- Ex 2
+SELECT * FROM Locacoes WHERE cod_carro = 1;
+
+-- Ex 3
+SELECT Locacoes.*, Clientes.nome AS nome_cliente, Clientes.telefone
+FROM Locacoes
+JOIN Carros ON Locacoes.cod_carro = Carros.codigo
+JOIN Clientes ON Locacoes.cod_cliente = Clientes.codigo
+WHERE Carros.combustivel = 'Gasolina';
+
+-- Ex 4
+SELECT Carros.*
+FROM Carros
+JOIN Locacoes ON Carros.codigo = Locacoes.cod_carro
+WHERE Carros.disponibilidade = "INDISPONÍVEL";
+
+-- Ex 5
+DELIMITER //
+
+CREATE PROCEDURE ConsultarLocacoesPorCodigoCarro(IN codigo_carro_param INT)
+BEGIN
+    SELECT *
+    FROM Locacoes
+    WHERE cod_carro = codigo_carro_param;
+END//
+
+DELIMITER ;
+
+CALL ConsultarLocacoesPorCodigoCarro(1);
+
+-- Ex 6
+DELIMITER //
+
+CREATE PROCEDURE AdicionarNovoCarro(
+    IN marca_param VARCHAR(50),
+    IN modelo_param VARCHAR(50),
+    IN ano_param INT,
+    IN cor_param VARCHAR(20),
+    IN placa_param VARCHAR(10),
+    IN combustivel_param VARCHAR(20),
+    IN disponibilidade_param BOOLEAN,
+    IN preco_dia_param DECIMAL(10, 2),
+    IN preco_km_param DECIMAL(10, 2)
+)
+BEGIN
+    INSERT INTO Carros (marca, modelo, ano, cor, placa, combustivel, disponibilidade, preco_dia, preco_km)
+    VALUES (marca_param, modelo_param, ano_param, cor_param, placa_param, combustivel_param, disponibilidade_param, preco_dia_param, preco_km_param);
+END//
+
+DELIMITER ;
+
+CALL AdicionarNovoCarro('Toyota', 'Corolla', 2024, 'Preto', 'ABC-5678', 'Gasolina', TRUE, 100.00, 0.50);
+```
