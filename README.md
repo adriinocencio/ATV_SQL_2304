@@ -22,7 +22,7 @@ CREATE TABLE Carros (
     cor VARCHAR(20),
     placa VARCHAR(10),
     combustivel VARCHAR(20),
-    disponibilidade BOOLEAN,
+    disponibilidade VARCHAR(20),
     preco_dia DECIMAL(10, 2),
     preco_km DECIMAL(10, 2)
 );
@@ -60,26 +60,26 @@ VALUES
 -- Inserir dados na tabela Carros
 INSERT INTO Carros (marca, modelo, ano, cor, placa, combustivel, disponibilidade, preco_dia, preco_km)
 VALUES
-    ('Toyota', 'Corolla', 2022, 'Preto', 'ABC-1234', 'Gasolina', true, 100.00, 0.50),
-    ('Honda', 'Civic', 2023, 'Prata', 'XYZ-5678', 'Flex', true, 120.00, 0.60),
-    ('Ford', 'Fiesta', 2021, 'Branco', 'DEF-9012', 'Álcool', true, 80.00, 0.40),
-    ('Chevrolet', 'Onix', 2022, 'Vermelho', 'GHI-3456', 'Gasolina', false, 90.00, 0.45),
-    ('Volkswagen', 'Gol', 2020, 'Azul', 'JKL-7890', 'Flex', true, 70.00, 0.35),
-    ('Fiat', 'Uno', 2023, 'Verde', 'MNO-2345', 'Flex', true, 60.00, 0.30),
-    ('Hyundai', 'HB20', 2022, 'Prata', 'PQR-6789', 'Flex', true, 85.00, 0.42),
-    ('Renault', 'Kwid', 2021, 'Azul', 'STU-1234', 'Álcool', true, 75.00, 0.38),
-    ('Nissan', 'March', 2023, 'Vermelho', 'VWX-5678', 'Gasolina', true, 95.00, 0.48),
-    ('Chevrolet', 'Tracker', 2022, 'Cinza', 'YZA-9012', 'Flex', false, 110.00, 0.55),
-    ('Volkswagen', 'Virtus', 2021, 'Preto', 'BCD-2345', 'Álcool', true, 85.00, 0.42),
-    ('Toyota', 'Yaris', 2023, 'Branco', 'EFG-6789', 'Flex', true, 100.00, 0.50),
-    ('Honda', 'Fit', 2022, 'Azul', 'HIJ-0123', 'Gasolina', true, 95.00, 0.48),
-    ('Ford', 'Ka', 2021, 'Vermelho', 'KLM-4567', 'Flex', true, 75.00, 0.38),
-    ('Fiat', 'Argo', 2022, 'Prata', 'NOP-8901', 'Álcool', false, 90.00, 0.45),
-    ('Hyundai', 'Creta', 2023, 'Preto', 'QRS-2345', 'Gasolina', true, 115.00, 0.58),
-    ('Renault', 'Sandero', 2021, 'Branco', 'TUV-6789', 'Flex', true, 80.00, 0.40),
-    ('Nissan', 'Versa', 2022, 'Cinza', 'WXY-0123', 'Flex', true, 90.00, 0.45),
-    ('Chevrolet', 'S10', 2023, 'Prata', 'ZAB-4567', 'Diesel', true, 150.00, 0.75),
-    ('Volkswagen', 'T-Cross', 2021, 'Azul', 'BCD-8901', 'Flex', true, 105.00, 0.53);
+    ('Toyota', 'Corolla', 2022, 'Preto', 'ABC-1234', 'Gasolina', 'INDISPONÍVEL', 100.00, 0.50),
+    ('Honda', 'Civic', 2023, 'Prata', 'XYZ-5678', 'Flex', 'INDISPONÍVEL', 120.00, 0.60),
+    ('Ford', 'Fiesta', 2021, 'Branco', 'DEF-9012', 'Álcool', 'INDISPONÍVEL', 80.00, 0.40),
+    ('Chevrolet', 'Onix', 2022, 'Vermelho', 'GHI-3456', 'Gasolina', 'DISPONÍVEL', 90.00, 0.45),
+    ('Volkswagen', 'Gol', 2020, 'Azul', 'JKL-7890', 'Flex', 'INDISPONÍVEL', 70.00, 0.35),
+    ('Fiat', 'Uno', 2023, 'Verde', 'MNO-2345', 'Flex', 'INDISPONÍVEL', 60.00, 0.30),
+    ('Hyundai', 'HB20', 2022, 'Prata', 'PQR-6789', 'Flex', 'INDISPONÍVEL', 85.00, 0.42),
+    ('Renault', 'Kwid', 2021, 'Azul', 'STU-1234', 'Álcool', 'INDISPONÍVEL', 75.00, 0.38),
+    ('Nissan', 'March', 2023, 'Vermelho', 'VWX-5678', 'Gasolina', 'INDISPONÍVEL', 95.00, 0.48),
+    ('Chevrolet', 'Tracker', 2022, 'Cinza', 'YZA-9012', 'Flex', 'DISPONÍVEL', 110.00, 0.55),
+    ('Volkswagen', 'Virtus', 2021, 'Preto', 'BCD-2345', 'Álcool', 'INDISPONÍVEL', 85.00, 0.42),
+    ('Toyota', 'Yaris', 2023, 'Branco', 'EFG-6789', 'Flex', 'INDISPONÍVEL', 100.00, 0.50),
+    ('Honda', 'Fit', 2022, 'Azul', 'HIJ-0123', 'Gasolina', 'INDISPONÍVEL', 95.00, 0.48),
+    ('Ford', 'Ka', 2021, 'Vermelho', 'KLM-4567', 'Flex', 'INDISPONÍVEL', 75.00, 0.38),
+    ('Fiat', 'Argo', 2022, 'Prata', 'NOP-8901', 'Álcool', 'DISPONÍVEL', 90.00, 0.45),
+    ('Hyundai', 'Creta', 2023, 'Preto', 'QRS-2345', 'Gasolina', 'INDISPONÍVEL', 115.00, 0.58),
+    ('Renault', 'Sandero', 2021, 'Branco', 'TUV-6789', 'Flex', 'INDISPONÍVEL', 80.00, 0.40),
+    ('Nissan', 'Versa', 2022, 'Cinza', 'WXY-0123', 'Flex', 'INDISPONÍVEL', 90.00, 0.45),
+    ('Chevrolet', 'S10', 2023, 'Prata', 'ZAB-4567', 'Diesel', 'INDISPONÍVEL', 150.00, 0.75),
+    ('Volkswagen', 'T-Cross', 2021, 'Azul', 'BCD-8901', 'Flex', 'INDISPONÍVEL', 105.00, 0.53);
 
 -- Inserir dados na tabela Locacoes
 INSERT INTO Locacoes (cod_cliente, cod_carro, data_retirada, data_devolucao, km_inicial, km_final, local, preco_final, metodoPagamento)
