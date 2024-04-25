@@ -94,26 +94,40 @@ VALUES
 ### Exercícios:
 
 ```sql
--- Ex 1
+-------------- Ex 1
 SELECT * FROM Carros;
 
--- Ex 2
+-------------- Ex 2
 SELECT * FROM Locacoes WHERE cod_carro = 1;
 
--- Ex 3
+-------------- Ex 3
 SELECT Locacoes.*, Clientes.nome AS nome_cliente, Clientes.telefone
 FROM Locacoes
 JOIN Carros ON Locacoes.cod_carro = Carros.codigo
 JOIN Clientes ON Locacoes.cod_cliente = Clientes.codigo
 WHERE Carros.combustivel = 'Gasolina';
 
--- Ex 4
+-------------- Ex 4
 SELECT Carros.*
 FROM Carros
 JOIN Locacoes ON Carros.codigo = Locacoes.cod_carro
 WHERE Carros.disponibilidade = "INDISPONÍVEL";
 
--- Ex 5
+-------------- Ex 5
+
+-- sp_01
+DELIMITER //
+
+CREATE PROCEDURE ConsultarTodosCarros()
+BEGIN
+    SELECT * FROM Carros;
+END//
+
+DELIMITER ;
+
+CALL ConsultarTodosCarros()
+
+-- sp_02
 DELIMITER //
 
 CREATE PROCEDURE ConsultarLocacoesPorCodigoCarro(IN codigo_carro_param INT)
@@ -127,7 +141,38 @@ DELIMITER ;
 
 CALL ConsultarLocacoesPorCodigoCarro(1);
 
--- Ex 6
+-- sp_03
+DELIMITER //
+
+CREATE PROCEDURE ConsultarLocacoesGasolinaComDetalhesCliente()
+BEGIN
+    SELECT Locacoes.*, Clientes.nome AS nome_cliente, Clientes.telefone
+    FROM Locacoes
+    JOIN Carros ON Locacoes.cod_carro = Carros.codigo
+    JOIN Clientes ON Locacoes.cod_cliente = Clientes.codigo
+    WHERE Carros.combustivel = 'Gasolina';
+END//
+
+DELIMITER ;
+
+CALL ConsultarLocacoesGasolinaComDetalhesCliente()
+
+-- sp_04
+DELIMITER //
+
+CREATE PROCEDURE ConsultarCarrosIndisponiveis()
+BEGIN
+    SELECT Carros.*
+    FROM Carros
+    JOIN Locacoes ON Carros.codigo = Locacoes.cod_carro
+    WHERE Carros.disponibilidade = 'INDISPONÍVEL';
+END//
+
+DELIMITER ;
+
+CALL ConsultarCarrosIndisponiveis()
+
+-------------- Ex 6
 DELIMITER //
 
 CREATE PROCEDURE AdicionarNovoCarro(
@@ -143,6 +188,12 @@ CREATE PROCEDURE AdicionarNovoCarro(
 )
 BEGIN
     INSERT INTO Carros (marca, modelo, ano, cor, placa, combustivel, disponibilidade, preco_dia, preco_km)
+    VALUES (marca_param, modelo_param, ano_param, cor_param, placa_param, combustivel_param, disponibilidade_param, preco_dia_param, preco_km_param);
+END//
+
+DELIMITER ;
+
+CALL AdicionarNovoCarro('Toyota', 'Corolla', 2024, 'Preto', 'ABC-5678', 'Gasolina', 'DISPONÍVEL', 100.00, 0.50);
     VALUES (marca_param, modelo_param, ano_param, cor_param, placa_param, combustivel_param, disponibilidade_param, preco_dia_param, preco_km_param);
 END//
 
